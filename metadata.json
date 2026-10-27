@@ -1,0 +1,6 @@
+{
+  "name": "Sfera Arquitectura",
+  "description": "Sitio web corporativo de Sfera Arquitectura: diseño arquitectónico, interiores, remodelaciones, construcción, planos y renders 3D.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
