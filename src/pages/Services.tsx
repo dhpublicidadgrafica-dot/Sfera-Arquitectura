@@ -96,13 +96,6 @@ export const Services: React.FC<ServicesProps> = ({ onOpenConsultationWithServic
                     }`}
                   >
                     <div>
-                      {/* Clean unboxed category kicker */}
-                      <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#102B38] mb-2">
-                        <span>Servicio Especializado</span>
-                        <span aria-hidden="true">·</span>
-                        <span className="text-[#C7B49A]">Sfera Arquitectura</span>
-                      </div>
-
                       <h2 className="font-serif text-2xl sm:text-4xl font-normal text-[#102B38] mb-4">
                         {srv.title}
                       </h2>

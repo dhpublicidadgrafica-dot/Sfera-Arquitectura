@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MessageSquare } from 'lucide-react';
+import { Phone, Mail } from 'lucide-react';
 import { Logo } from './Logo';
-import { OFFICIAL_PHONE, OFFICIAL_EMAIL, getWhatsAppLink, SERVICES_DATA } from '../data/servicesData';
+import { OFFICIAL_PHONE, OFFICIAL_EMAIL, SERVICES_DATA } from '../data/servicesData';
 
 export const Footer: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
                 <div className="w-7 h-7 rounded-full bg-stone-800/80 flex items-center justify-center text-[#C7B49A] group-hover:bg-[#C7B49A] group-hover:text-[#102B38] transition-colors">
                   <Phone className="w-3.5 h-3.5" />
                 </div>
-                <span>{OFFICIAL_PHONE} (Línea directa & WhatsApp)</span>
+                <span>{OFFICIAL_PHONE}</span>
               </a>
 
               <a
@@ -37,18 +37,6 @@ export const Footer: React.FC = () => {
                   <Mail className="w-3.5 h-3.5" />
                 </div>
                 <span>{OFFICIAL_EMAIL}</span>
-              </a>
-
-              <a
-                href={getWhatsAppLink('Hola, Sfera Arquitectura. Quisiera recibir información sobre sus servicios.')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 hover:text-[#C7B49A] transition-colors group"
-              >
-                <div className="w-7 h-7 rounded-full bg-stone-800/80 flex items-center justify-center text-[#C7B49A] group-hover:bg-[#C7B49A] group-hover:text-[#102B38] transition-colors">
-                  <MessageSquare className="w-3.5 h-3.5" />
-                </div>
-                <span>Atención inmediata en WhatsApp</span>
               </a>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, MessageSquare, ArrowUpRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, MessageSquare, ArrowUpRight, Compass, Home } from 'lucide-react';
 import { ProjectItem } from '../data/projectsData';
 import { getWhatsAppLink } from '../data/servicesData';
 
@@ -69,6 +69,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   if (!project) return null;
 
+  const currentViewLabel = currentIndex === 0 ? 'Vista Exterior' : 'Vista Interior';
   const whatsappMsg = `Hola, Sfera Arquitectura. Me interesa el proyecto "${project.title}" (${project.category}) y quisiera recibir asesoría para un requerimiento similar.`;
 
   return (
@@ -96,15 +97,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-            {/* Image counter indicator */}
-            <span className="text-[11px] sm:text-xs text-stone-300 font-medium tracking-widest px-2 sm:px-2.5 py-1 bg-stone-900/60 rounded border border-stone-800">
-              {currentIndex + 1} / {total}
+            {/* View Tag (Exterior vs Interior) */}
+            <span className="text-[11px] text-[#C7B49A] bg-stone-900/90 font-medium px-2.5 py-1 rounded border border-[#C7B49A]/30">
+              {currentViewLabel} ({currentIndex + 1} de {total})
             </span>
 
             {/* Close Button */}
             <button
               onClick={onClose}
-              aria-label="Cerrar carrusel"
+              aria-label="Cerrar visor"
               className="p-1.5 text-stone-300 hover:text-white hover:bg-stone-800/80 rounded transition-colors"
             >
               <X className="w-5 h-5" />
@@ -116,22 +117,31 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         <div
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="relative flex-1 min-h-[260px] sm:min-h-[440px] md:min-h-[500px] bg-black flex items-center justify-center overflow-hidden select-none touch-pan-y"
+          className="relative flex-1 min-h-[280px] sm:min-h-[440px] md:min-h-[500px] bg-black flex items-center justify-center overflow-hidden select-none touch-pan-y"
         >
           {/* Main Displayed Image */}
           <img
             key={currentIndex}
             src={images[currentIndex]}
-            alt={`${project.title} - Vista ${currentIndex + 1} de ${total}`}
+            alt={`${project.title} - ${currentViewLabel}`}
+            onError={(e) => {
+              e.currentTarget.src = '/propuesta-arquitectura.jpg';
+            }}
             className="w-full h-full max-h-[62vh] sm:max-h-[68vh] object-contain transition-opacity duration-300"
           />
+
+          {/* Floating Subtle View Pill on image */}
+          <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded text-xs text-white border border-white/10 flex items-center gap-1.5">
+            {currentIndex === 0 ? <Compass className="w-3.5 h-3.5 text-[#C7B49A]" /> : <Home className="w-3.5 h-3.5 text-[#C7B49A]" />}
+            <span>{currentViewLabel}</span>
+          </div>
 
           {/* Navigation Arrows */}
           {total > 1 && (
             <>
               <button
                 onClick={handlePrev}
-                aria-label="Imagen anterior"
+                aria-label="Ver imagen anterior"
                 className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 bg-black/60 hover:bg-black/90 text-white rounded-full transition-all duration-200 border border-white/20 hover:scale-105 active:scale-95 backdrop-blur-xs"
               >
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -139,7 +149,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
               <button
                 onClick={handleNext}
-                aria-label="Siguiente imagen"
+                aria-label="Ver siguiente imagen"
                 className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 bg-black/60 hover:bg-black/90 text-white rounded-full transition-all duration-200 border border-white/20 hover:scale-105 active:scale-95 backdrop-blur-xs"
               >
                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -148,28 +158,38 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           )}
         </div>
 
-        {/* Footer Navigation Bar: Thumbnails & WhatsApp Action */}
-        <div className="px-5 py-3.5 bg-[#102B38] border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
-          {/* 4 Thumbnail Buttons */}
-          <div className="flex items-center gap-2 overflow-x-auto py-1">
-            {images.map((imgUrl, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                aria-label={`Ver imagen ${idx + 1}`}
-                className={`relative w-14 h-10 sm:w-16 sm:h-11 rounded overflow-hidden flex-shrink-0 transition-all ${
-                  currentIndex === idx
-                    ? 'ring-2 ring-[#C7B49A] opacity-100 scale-105'
-                    : 'opacity-50 hover:opacity-85'
-                }`}
-              >
-                <img
-                  src={imgUrl}
-                  alt={`Miniatura ${idx + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            ))}
+        {/* Footer Navigation Bar: 2 View Selectors (Exterior / Interior) & WhatsApp Action */}
+        <div className="px-4 sm:px-5 py-3 bg-[#102B38] border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+          {/* 2 Concordant View Selectors */}
+          <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+            {images.map((imgUrl, idx) => {
+              const label = idx === 0 ? '1. Vista Exterior' : '2. Vista Interior';
+              const isActive = currentIndex === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  aria-label={`Ver ${label}`}
+                  className={`flex items-center gap-2.5 px-3 py-1.5 rounded transition-all text-xs border ${
+                    isActive
+                      ? 'bg-stone-900 border-[#C7B49A] text-white shadow-sm'
+                      : 'bg-stone-900/40 border-stone-800 text-stone-400 hover:text-stone-200 hover:border-stone-700'
+                  }`}
+                >
+                  <div className="relative w-9 h-7 rounded overflow-hidden flex-shrink-0">
+                    <img
+                      src={imgUrl}
+                      alt={label}
+                      onError={(e) => {
+                        e.currentTarget.src = '/propuesta-arquitectura.jpg';
+                      }}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span className="font-medium">{label}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* WhatsApp Direct Inquiry Button */}
@@ -177,7 +197,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             href={getWhatsAppLink(whatsappMsg)}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#C7B49A] text-[#102B38] text-xs font-semibold tracking-wider uppercase rounded-sm hover:bg-[#E8DFD3] transition-colors shadow-md"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#C7B49A] text-[#102B38] text-xs font-semibold tracking-wider uppercase rounded-sm hover:bg-[#E8DFD3] transition-colors shadow-md flex-shrink-0"
           >
             <MessageSquare className="w-3.5 h-3.5" />
             <span>Consultar por este proyecto</span>

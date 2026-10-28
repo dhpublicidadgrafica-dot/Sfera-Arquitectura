@@ -45,22 +45,23 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 w-full">
           <div className="max-w-3xl">
-            {/* Architectural Kicker (clean typography, no pill) */}
-            <div className="flex items-center gap-3 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-[#C7B49A] mb-4">
-              <span>Sfera Arquitectura</span>
-              <span aria-hidden="true" className="w-8 h-[1px] bg-[#C7B49A]" />
-              <span>Estudio Contemporáneo</span>
+            {/* Architectural Kicker */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold tracking-[0.22em] uppercase text-[#C7B49A] mb-4">
+              <span>Arquitectura</span>
+              <span aria-hidden="true" className="text-[#C7B49A]/60">·</span>
+              <span>Ingeniería Civil</span>
+              <span aria-hidden="true" className="text-[#C7B49A]/60">·</span>
+              <span>Construcción</span>
             </div>
 
             {/* Main Headline (H1) */}
             <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] tracking-tight text-white mb-6">
-              Diseñamos espacios que inspiran.
+              Diseñamos con visión. Construimos con precisión.
             </h1>
 
             {/* Complementary Text */}
             <p className="text-base sm:text-xl text-stone-200 leading-relaxed font-light max-w-2xl mb-10">
-              Transformamos tus ideas en espacios funcionales, modernos y únicos, diseñados para
-              responder a tus necesidades y a tu estilo de vida.
+              Desarrollamos proyectos de arquitectura e ingeniería civil con planeación estratégica, excelencia técnica y gestión inteligente de los recursos. Convertimos tus ideas en espacios de calidad, cuidando cada detalle y protegiendo el valor de tu inversión.
             </p>
 
             {/* Action Buttons */}
@@ -139,8 +140,8 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
             <div className="lg:col-span-6 relative">
               <div className="relative z-10 rounded-sm overflow-hidden shadow-2xl border border-stone-200 aspect-[4/3] sm:aspect-[3/2]">
                 <img
-                  src="/presentacion-sfera.png"
-                  alt="Edificación arquitectónica contemporánea con fachada en madera y estructura pergolada"
+                  src="/propuesta-arquitectura.jpg"
+                  alt="Espacio contemporáneo de comedor y sala con diseño interior y acabados de calidad"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -278,21 +279,24 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
             ))}
           </div>
 
-          {/* Projects Grid */}
+          {/* Projects Grid with uniform horizontal format */}
           <div className={`grid gap-6 ${
             selectedCategory === 'Todos'
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
               : 'grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto'
           }`}>
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
                 onClick={() => setActiveProject(project)}
-                className="group cursor-pointer rounded-sm overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 relative aspect-[16/11] bg-stone-900"
+                className="group cursor-pointer rounded-sm overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 relative aspect-[16/10] bg-stone-900"
               >
                 <img
                   src={project.image}
                   alt={project.title}
+                  onError={(e) => {
+                    e.currentTarget.src = '/propuesta-arquitectura.jpg';
+                  }}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
