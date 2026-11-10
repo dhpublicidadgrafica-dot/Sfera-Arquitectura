@@ -123,14 +123,15 @@ Enviado desde el sitio web corporativo de Sfera Arquitectura.`;
 
     if (!validate()) return;
 
-    setIsSubmitting(true);
-
     const messageText = generateMessageBody();
     const whatsappUrl = `https://wa.me/${OFFICIAL_PHONE_CLEAN}?text=${encodeURIComponent(messageText)}`;
 
-    const emailSubject = encodeURIComponent(`Nueva Solicitud: ${form.service} - ${form.fullName}`);
+    const emailSubject = encodeURIComponent(`Solicitud de Asesoría: ${form.service} — ${form.fullName.trim()}`);
     const emailBody = encodeURIComponent(messageText);
     const emailUrl = `mailto:${OFFICIAL_EMAIL}?subject=${emailSubject}&body=${emailBody}`;
+
+    // Automatically trigger user client mailto if submitted via email primary
+    window.location.href = emailUrl;
 
     setTimeout(() => {
       setIsSubmitting(false);
@@ -249,7 +250,7 @@ Enviado desde el sitio web corporativo de Sfera Arquitectura.`;
 
                 {/* Email */}
                 <a
-                  href={`mailto:${OFFICIAL_EMAIL}`}
+                  href={`mailto:${OFFICIAL_EMAIL}?subject=${encodeURIComponent('Solicitud de Asesoría Arquitectónica — Sfera Arquitectura')}&body=${encodeURIComponent('Hola equipo de Sfera Arquitectura,\n\nMe gustaría solicitar información y asesoría para un proyecto arquitectónico.\n\nDatos de mi proyecto:\n- Nombre:\n- Teléfono / WhatsApp:\n- Tipo de espacio (Casa, Apartamento, Local, Lote):\n- Ubicación / Ciudad:\n- Descripción breve:\n\nQuedo atento a su respuesta.\n')}`}
                   className="p-5 bg-white rounded-sm border border-stone-200/90 shadow-xs hover:border-[#102B38] transition-all flex items-start gap-4 group"
                 >
                   <div className="w-11 h-11 rounded-full bg-[#102B38] text-[#C7B49A] flex items-center justify-center flex-shrink-0 group-hover:bg-[#183C4E] transition-colors">
@@ -263,7 +264,7 @@ Enviado desde el sitio web corporativo de Sfera Arquitectura.`;
                       {OFFICIAL_EMAIL}
                     </span>
                     <span className="text-xs text-stone-500 mt-1 inline-flex items-center gap-1 group-hover:text-[#102B38] transition-colors">
-                      Enviar correo formal con adjuntos
+                      Enviar correo formal a {OFFICIAL_EMAIL}
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </span>
                   </div>

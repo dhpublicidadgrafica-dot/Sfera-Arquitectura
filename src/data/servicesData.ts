@@ -39,8 +39,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Cortes longitudinales, transversales y fachadas.',
       'Visualizaciones y perspectivas volumétricas preliminares.'
     ],
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Residencia contemporánea con grandes ventanales y arquitectura sobria',
+    image: '/servicio-diseno-arquitectonico.jpg',
+    imageAlt: 'Residencia campestre contemporánea integrada a la ladera natural con iluminación cálida y ventanales panorámicos',
     whatsappMessage: 'Hola, Sfera Arquitectura. Quiero solicitar asesoría para un proyecto de Diseño Arquitectónico.'
   },
   {
@@ -61,8 +61,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Plano de distribución de mobiliario y luminarias.',
       'Renders fotorrealistas de los ambientes interiores clave.'
     ],
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Diseño de sala de estar contemporánea con mobiliario elegante y luz cálida',
+    image: '/servicio-diseno-interiores.jpg',
+    imageAlt: 'Dormitorio contemporáneo con muro en ladrillo a la vista, iluminación colgante puntual y ventanal de piso a techo hacia el exterior',
     whatsappMessage: 'Hola, Sfera Arquitectura. Quiero recibir asesoría para un proyecto de Diseño de Interiores.'
   },
   {
@@ -127,8 +127,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Planos de carpintería e instalaciones especiales acordadas.',
       'Recorridos virtuales o vistas 360° según el alcance requerido.'
     ],
-    image: '/servicio-planos-renders.jpg',
-    imageAlt: 'Modelado arquitectónico 3D y análisis de volumetría en pantalla digital',
+    image: '/servicio-planos-renders-v2.jpg',
+    imageAlt: 'Render 3D arquitectónico fotorrealista de conjunto residencial con cabañas solares, paisajismo y áreas comunes',
     whatsappMessage: 'Hola, Sfera Arquitectura. Quiero cotizar un paquete de Planos y Renders 3D para mi proyecto.'
   },
   {
@@ -152,5 +152,71 @@ export const SERVICES_DATA: ServiceItem[] = [
     image: '/servicio-asesoria.jpg',
     imageAlt: 'Reunión de asesoría arquitectónica y consulta de proyecto en tablet digital',
     whatsappMessage: 'Hola, Sfera Arquitectura. Deseo agendar una Asesoría y acompañamiento para mi proyecto.'
+  },
+  {
+    id: 'construccion',
+    number: '07',
+    title: 'Construcción',
+    shortDesc: 'Ejecución integral de obras civiles y edificaciones con riguroso control técnico, cumplimiento presupuestal y altos estándares de calidad.',
+    fullDesc: 'Materializamos proyectos de edificación desde la cimentación hasta los acabados finales. Aplicamos procesos constructivos rigurosos, supervisión técnica permanente, administración eficiente de materiales y coordinación de mano de obra especializada para garantizar que la obra se ejecute con precisión, seguridad y fidelidad absoluta a los diseños aprobados.',
+    benefits: [
+      'Ejecución planificada con cronogramas claros y control de costos.',
+      'Supervisión técnica continua en sitio por profesionales idóneos.',
+      'Control de calidad en concreto, mampostería, instalaciones y acabados.',
+      'Optimización de recursos y prevención efectiva de sobrecostos.'
+    ],
+    deliverables: [
+      'Presupuesto de obra detallado y programa de ejecución por capítulos.',
+      'Actas de inicio, avance físico y comités de obra periódicos.',
+      'Control de ensayos de calidad y especificaciones de materiales.',
+      'Entrega final de obra a satisfacción con manuales y garantías.'
+    ],
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80',
+    imageAlt: 'Ejecución de obra civil y construcción de estructura de edificación con supervisión técnica',
+    whatsappMessage: 'Hola, Sfera Arquitectura. Quiero solicitar asesoría y cotización para un proyecto de Construcción.'
+  },
+  {
+    id: 'desenglobes',
+    number: '08',
+    title: 'Desenglobes',
+    shortDesc: 'Gestión técnica y urbanística integral para la subdivisión, delimitación y legalización de predios rurales y urbanos.',
+    fullDesc: 'Acompañamos el proceso técnico y normativo de desenglobe y subdivisión de terrenos, lotes y edificaciones. Elaboramos el levantamiento topográfico de precisión, planos de linderos, cuadros de áreas y la documentación técnica exigida por curadurías, oficinas de planeación y notarías para independizar jurídicamente cada inmueble con total seguridad.',
+    benefits: [
+      'Seguridad jurídica y técnica para cada porción de terreno resultante.',
+      'Planimetría topográfica y cuadros de áreas georreferenciados exactos.',
+      'Cumplimiento estricto del POT (Plan de Ordenamiento Territorial) local.',
+      'Acompañamiento en el trámite ante curaduría y registro de instrumentos públicos.'
+    ],
+    deliverables: [
+      'Levantamiento topográfico planimétrico y altimétrico georreferenciado.',
+      'Planos técnicos de desenglobe con cotas, linderos y coordenadas oficiales.',
+      'Memoria técnica descriptiva de linderos y cuadros de áreas por lote.',
+      'Expediente documental estructurado para trámite de licencia de subdivisión.'
+    ],
+    image: '/servicio-desenglobes.jpg',
+    imageAlt: 'Planos técnicos arquitectónicos y de desenglobe con herramientas de precisión, compás y casco de ingeniería',
+    whatsappMessage: 'Hola, Sfera Arquitectura. Deseo recibir asesoría técnica para un trámite de Desenglobe de predio.'
+  },
+  {
+    id: 'diseno-estructural',
+    number: '09',
+    title: 'Diseño estructural',
+    shortDesc: 'Cálculo, modelado y diseño sismorresistente bajo norma NSR-10 para edificaciones seguras, eficientes y optimizadas.',
+    fullDesc: 'Desarrollamos el diseño y cálculo estructural de edificaciones residenciales, comerciales e industriales en concreto reforzado, estructuras metálicas y mampostería estructural. Evaluamos cargas vivas, muertas, de viento y sismo bajo la normativa vigente (NSR-10), optimizando las cuantías de acero y concreto para lograr edificaciones seguras y financieramente eficientes.',
+    benefits: [
+      'Garantía de seguridad y estabilidad sismorresistente bajo norma NSR-10.',
+      'Optimización de secciones y cuantías de acero para reducir costos en obra.',
+      'Compatibilización directa con el diseño arquitectónico e hidrosanitario.',
+      'Aprobación ágil ante curadurías urbanas y supervisores técnicos independientes.'
+    ],
+    deliverables: [
+      'Memoria de cálculo estructural detallada y modelado computacional.',
+      'Planos estructurales constructivos de cimentación, vigas, columnas y losas.',
+      'Cuadros de despiece de acero y detalles de empalmes y anclajes.',
+      'Firma técnica de ingeniero calculista facultado para trámite de curaduría.'
+    ],
+    image: '/servicio-diseno-estructural.jpg',
+    imageAlt: 'Estructura reticular metálica y celosía espacial con columnas de acero para arquitectura de vanguardia',
+    whatsappMessage: 'Hola, Sfera Arquitectura. Quiero solicitar información y cotización para el Diseño Estructural de mi proyecto.'
   }
 ];

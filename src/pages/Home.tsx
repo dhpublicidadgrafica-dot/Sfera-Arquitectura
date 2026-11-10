@@ -140,8 +140,8 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
             <div className="lg:col-span-6 relative">
               <div className="relative z-10 rounded-sm overflow-hidden shadow-2xl border border-stone-200 aspect-[4/3] sm:aspect-[3/2]">
                 <img
-                  src="/propuesta-arquitectura.jpg"
-                  alt="Espacio contemporáneo de comedor y sala con diseño interior y acabados de calidad"
+                  src="/propuesta-arquitectura-v2.jpg"
+                  alt="Estudio y espacio contemporáneo con ventanal panorámico hacia la naturaleza y diseño interior biofílico"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -279,10 +279,10 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
             ))}
           </div>
 
-          {/* Projects Grid with uniform horizontal format */}
+          {/* Projects Grid with uniform horizontal format (5 Projects) */}
           <div className={`grid gap-6 ${
             selectedCategory === 'Todos'
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
               : 'grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto'
           }`}>
             {filteredProjects.map((project) => (
@@ -306,11 +306,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <div className="flex items-center gap-2 text-[11px] text-[#C7B49A] font-medium uppercase tracking-wider mb-1">
-                    <span>{project.category}</span>
-                    <span aria-hidden="true">·</span>
-                    <span>{project.area}</span>
-                  </div>
                   <h3 className="font-serif text-lg sm:text-xl font-medium text-white group-hover:text-[#C7B49A] transition-colors leading-snug">
                     {project.title}
                   </h3>
