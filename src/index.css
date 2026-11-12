@@ -44,3 +44,130 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #102B38;
 }
+
+/* =========================================================================
+   GLOBAL PREMIUM MOTION & REVEAL SYSTEM FOR IMAGES
+   Elegance, depth, 60fps performance & hardware acceleration
+   ========================================================================= */
+
+/* Timing Curves */
+:root {
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base states before intersecting viewport */
+.img-reveal-init {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 750ms var(--ease-premium), transform 850ms var(--ease-premium);
+}
+
+/* Slide Up */
+.img-reveal-init.anim-slide-up {
+  transform: translate3d(0, 24px, 0) scale(0.98);
+}
+.img-reveal-init.anim-slide-up.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Slide Left (enters moving right) */
+.img-reveal-init.anim-slide-left {
+  transform: translate3d(-28px, 0, 0) scale(0.98);
+}
+.img-reveal-init.anim-slide-left.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Slide Right (enters moving left) */
+.img-reveal-init.anim-slide-right {
+  transform: translate3d(28px, 0, 0) scale(0.98);
+}
+.img-reveal-init.anim-slide-right.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Zoom Reveal */
+.img-reveal-init.anim-zoom-reveal {
+  transform: scale(0.96);
+}
+.img-reveal-init.anim-zoom-reveal.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Fade Reveal */
+.img-reveal-init.anim-fade-reveal {
+  transform: translate3d(0, 10px, 0);
+}
+.img-reveal-init.anim-fade-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Subtle Floating Motion (Slow, continuous, non-distorting) */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+.img-floating {
+  animation: subtleFloat 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Premium Hover Zoom (Smooth, scale without blurry artifacts) */
+.img-hover-zoom {
+  transition: transform 600ms var(--ease-premium), filter 400ms var(--ease-premium);
+  transform-origin: center center;
+  backface-visibility: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .img-hover-zoom,
+  .img-hover-zoom:hover {
+    transform: scale(1.045);
+  }
+}
+
+/* Parallax Layer smoothing */
+.parallax-layer {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 80ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .img-reveal-init,
+  .img-reveal-init.anim-slide-up,
+  .img-reveal-init.anim-slide-left,
+  .img-reveal-init.anim-slide-right,
+  .img-reveal-init.anim-zoom-reveal,
+  .img-reveal-init.anim-fade-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .img-floating {
+    animation: none !important;
+  }
+
+  .img-hover-zoom {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .parallax-layer {
+    transform: none !important;
+    transition: none !important;
+  }
+}

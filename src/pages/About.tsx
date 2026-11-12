@@ -13,6 +13,7 @@ import {
   CalendarCheck,
   Target
 } from 'lucide-react';
+import { AnimatedImage } from '../components/AnimatedImage';
 
 interface AboutProps {
   onOpenConsultation: () => void;
@@ -58,19 +59,24 @@ export const About: React.FC<AboutProps> = ({ onOpenConsultation }) => {
   ];
 
   return (
-    <div className="bg-[#F4F3EF] text-[#30383D] pt-24 sm:pt-28">
+    <div className="bg-[#F4F3EF] text-[#30383D]">
       {/* =========================================================================
           HERO SECTION
           ========================================================================= */}
-      <section className="relative py-24 sm:py-32 bg-[#102B38] text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-[#102B38] text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
-          <img
+          <AnimatedImage
             src="/hero-equipo.jpg"
             alt="Equipo de arquitectura e ingeniería revisando planos frente a ventanal"
+            animation="zoom-reveal"
+            parallax={true}
+            parallaxSpeed={0.08}
+            hoverZoom={false}
+            containerClassName="w-full h-full"
             className="w-full h-full object-cover object-center"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#102B38]/95 via-[#102B38]/85 to-[#102B38]/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#102B38]/95 via-[#102B38]/85 to-[#102B38]/70 pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <div className="flex items-center justify-center gap-2.5 text-xs font-semibold tracking-[0.25em] uppercase text-[#C7B49A]">
@@ -97,9 +103,12 @@ export const About: React.FC<AboutProps> = ({ onOpenConsultation }) => {
             {/* Visual Column */}
             <div className="lg:col-span-5 relative">
               <div className="rounded-sm overflow-hidden shadow-xl border border-stone-200 aspect-[4/5] bg-stone-900">
-                <img
+                <AnimatedImage
                   src="/nosotros-quienes-somos.jpg"
                   alt="Arquitecto director de proyecto con planos en obra residencial"
+                  animation="slide-left"
+                  hoverZoom={true}
+                  containerClassName="w-full h-full"
                   className="w-full h-full object-cover object-top"
                 />
               </div>

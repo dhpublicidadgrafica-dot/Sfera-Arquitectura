@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MessageSquare, Send, CheckCircle2, AlertCircle, ArrowUpRight, Copy, Check } from 'lucide-react';
 import { OFFICIAL_PHONE, OFFICIAL_EMAIL, OFFICIAL_PHONE_CLEAN, SERVICES_DATA } from '../data/servicesData';
+import { AnimatedImage } from '../components/AnimatedImage';
 
 interface FormState {
   fullName: string;
@@ -152,15 +153,20 @@ Enviado desde el sitio web corporativo de Sfera Arquitectura.`;
   };
 
   return (
-    <div className="bg-[#F4F3EF] text-[#30383D] pt-24 sm:pt-28">
+    <div className="bg-[#F4F3EF] text-[#30383D]">
       {/* =========================================================================
           HERO SECTION
           ========================================================================= */}
-      <section className="relative py-24 sm:py-32 bg-[#102B38] text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-[#102B38] text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
-          <img
+          <AnimatedImage
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80"
             alt="Fachada arquitectónica iluminada al atardecer"
+            animation="zoom-reveal"
+            parallax={true}
+            parallaxSpeed={0.07}
+            hoverZoom={false}
+            containerClassName="w-full h-full"
             className="w-full h-full object-cover"
           />
         </div>

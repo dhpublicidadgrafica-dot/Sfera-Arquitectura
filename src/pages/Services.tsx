@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { ChevronDown, MessageSquare, ArrowUpRight, Check, Sparkles, HelpCircle, ArrowRight } from 'lucide-react';
 import { SERVICES_DATA, getWhatsAppLink, ServiceItem } from '../data/servicesData';
 import { FAQ_DATA } from '../data/faqData';
+import { AnimatedImage } from '../components/AnimatedImage';
 
 interface ServicesProps {
   onOpenConsultationWithService: (serviceName: string) => void;
@@ -30,15 +31,20 @@ export const Services: React.FC<ServicesProps> = ({ onOpenConsultationWithServic
   };
 
   return (
-    <div className="bg-[#F4F3EF] text-[#30383D] pt-24 sm:pt-28">
+    <div className="bg-[#F4F3EF] text-[#30383D]">
       {/* =========================================================================
           HERO SECTION
           ========================================================================= */}
-      <section className="relative py-24 sm:py-32 bg-[#102B38] text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-[#102B38] text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
-          <img
+          <AnimatedImage
             src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=80"
             alt="Mesa de diseño y planos arquitectónicos"
+            animation="zoom-reveal"
+            parallax={true}
+            parallaxSpeed={0.07}
+            hoverZoom={false}
+            containerClassName="w-full h-full"
             className="w-full h-full object-cover"
           />
         </div>
@@ -78,13 +84,16 @@ export const Services: React.FC<ServicesProps> = ({ onOpenConsultationWithServic
                       isEven ? 'lg:order-2' : 'lg:order-1'
                     }`}
                   >
-                    <img
+                    <AnimatedImage
                       src={srv.image}
                       alt={srv.imageAlt}
+                      animation={isEven ? 'slide-right' : 'slide-left'}
+                      hoverZoom={true}
+                      containerClassName="w-full h-full"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                    <span className="absolute top-6 left-6 font-serif text-3xl text-white/90 drop-shadow">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute top-6 left-6 font-serif text-3xl text-white/90 drop-shadow z-10">
                       {srv.number}
                     </span>
                   </div>

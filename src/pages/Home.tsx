@@ -4,6 +4,7 @@ import { ArrowUpRight, ArrowRight, Compass, Layout, CheckCircle, Sparkles, Messa
 import { SERVICES_DATA, getWhatsAppLink } from '../data/servicesData';
 import { PROJECTS_DATA, PROJECT_CATEGORIES, ProjectItem } from '../data/projectsData';
 import { ProjectModal } from '../components/ProjectModal';
+import { AnimatedImage } from '../components/AnimatedImage';
 
 interface HomeProps {
   onOpenConsultation: () => void;
@@ -30,12 +31,17 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
           HERO SECTION
           ========================================================================= */}
       <section className="relative min-h-screen flex items-center justify-center bg-[#102B38] text-white overflow-hidden pt-24 sm:pt-28">
-        {/* Background Architectural Photography */}
+        {/* Background Architectural Photography with Parallax Motion */}
         <div className="absolute inset-0 z-0">
-          <img
+          <AnimatedImage
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85"
             alt="Arquitectura contemporánea con diseño sobrio y luz natural"
-            className="w-full h-full object-cover object-center scale-105 transform animate-in fade-in duration-1000"
+            animation="zoom-reveal"
+            parallax={true}
+            parallaxSpeed={0.07}
+            hoverZoom={false}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center scale-105"
           />
           {/* Subtle architectural overlay for optimal legibility */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#102B38]/90 via-[#102B38]/70 to-[#102B38]/50" />
@@ -139,9 +145,13 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
             {/* Right Column: Architectural Composition */}
             <div className="lg:col-span-6 relative">
               <div className="relative z-10 rounded-sm overflow-hidden shadow-2xl border border-stone-200 aspect-[4/3] sm:aspect-[3/2]">
-                <img
+                <AnimatedImage
                   src="/propuesta-arquitectura-v2.jpg"
                   alt="Estudio y espacio contemporáneo con ventanal panorámico hacia la naturaleza y diseño interior biofílico"
+                  animation="slide-right"
+                  hoverZoom={true}
+                  floating={true}
+                  containerClassName="w-full h-full"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -180,20 +190,24 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
 
           {/* 6 Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SERVICES_DATA.map((srv) => (
+            {SERVICES_DATA.map((srv, idx) => (
               <div
                 key={srv.id}
                 className="group flex flex-col bg-[#F4F3EF] rounded-sm overflow-hidden border border-stone-200/90 hover:border-[#102B38] transition-all duration-300 hover:shadow-xl"
               >
                 {/* Image Container with Subtle Zoom */}
                 <div className="relative h-56 overflow-hidden bg-stone-900">
-                  <img
+                  <AnimatedImage
                     src={srv.image}
                     alt={srv.imageAlt}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    animation="fade-reveal"
+                    hoverZoom={true}
+                    delay={idx * 60}
+                    containerClassName="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <span className="absolute top-4 left-4 font-serif text-lg text-white font-medium drop-shadow-md">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute top-4 left-4 font-serif text-lg text-white font-medium drop-shadow-md z-10">
                     {srv.number}
                   </span>
                 </div>
@@ -285,21 +299,25 @@ export const Home: React.FC<HomeProps> = ({ onOpenConsultation }) => {
               ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
               : 'grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto'
           }`}>
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, idx) => (
               <div
                 key={project.id}
                 onClick={() => setActiveProject(project)}
                 className="group cursor-pointer rounded-sm overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-300 relative aspect-[16/10] bg-stone-900"
               >
-                <img
+                <AnimatedImage
                   src={project.image}
                   alt={project.title}
+                  animation="slide-up"
+                  delay={idx * 70}
+                  hoverZoom={true}
                   onError={(e) => {
                     e.currentTarget.src = '/propuesta-arquitectura.jpg';
                   }}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  containerClassName="w-full h-full"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-85 group-hover:opacity-95 transition-opacity pointer-events-none" />
 
                 <div className="absolute top-3 right-3 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
                   <Maximize2 className="w-3.5 h-3.5" />
